@@ -81,7 +81,7 @@ const Onboarding = () => {
             {
               width: width * slides.length,
               flex: 1,
-              transform: [{ translateX: multiply(x, -1) }]
+              transform: [{ translateX: multiply(x, -1) }],
             },
           ]}
         >
