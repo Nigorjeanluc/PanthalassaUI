@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // import Tutorial from './src/views/Tutorial';
 // import Profile from './src/views/Profile';
-import { Onboarding } from './src/views/Authentication';
+import { Onboarding, Welcome } from './src/views/Authentication';
 import { LoadAssets } from './src/components';
 
 const fonts = {
@@ -22,6 +22,10 @@ const AuthenticationNavigator = () => {
         <AuthenticationStack.Screen
           name="Onboarding"
           component={Onboarding}
+        />
+        <AuthenticationStack.Screen
+          name="Welcome"
+          component={Welcome}
         />
     </AuthenticationStack.Navigator>
   );

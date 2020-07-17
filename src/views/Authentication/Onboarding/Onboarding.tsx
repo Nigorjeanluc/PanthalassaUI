@@ -7,14 +7,14 @@ import {
 import {
   ScrollView
 } from "react-native-gesture-handler";
-import { useValue, onScrollEvent, interpolateColor } from "react-native-redash";
-import Animated, { multiply } from 'react-native-reanimated';
+import { useScrollHandler, interpolateColor } from "react-native-redash";
+import Animated, { multiply, divide } from 'react-native-reanimated';
 
 
-import Slide, { SLIDE_HEIGHT } from "./Slide";
+import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
+import Dot from "./Dot";
 
-const BORDER_RADIUS = 75;
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -25,30 +25,36 @@ const styles = StyleSheet.create({
     slider: {
         height: SLIDE_HEIGHT,
         backgroundColor: "cyan",
-        borderBottomRightRadius: BORDER_RADIUS
+        // borderBottomRightRadius: BORDER_RADIUS
     },
     footer: {
         flex: 1,
     },
     footerContent: {
-      flexDirection: "row",
+      flex: 1,
       backgroundColor: "white",
-      borderTopLeftRadius: BORDER_RADIUS
+      // borderTopLeftRadius: BORDER_RADIUS
+    },
+    pagination: {
+      ...StyleSheet.absoluteFillObject,
+      height: BORDER_RADIUS,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
     }
 });
 
 const slides = [
-  {title: "Relaxed", subtitle: "Welcome to Rwanda", description: "Discover the land of a thousand hills", color: "#BFEAF5"},
-  {title: "Playful", subtitle: "Gorilla Trecking", description: "The unique opportunity to see mountain gorillas in their natural habitat is unforgettable.", color: "#BEECC4"},
-  {title: "Excentric", subtitle: "Great Lakes", description: "Part of Africa’s Great Rift Valley, Rwanda is surrounded by magnificent lakes", color: "#FFE4D9"},
-  {title: "Funky", subtitle: "Canopy Walk", description: "Memorable and photogenic moments include walking up to the Isumo waterfall or along the Canopy Walk suspension bridge.", color: "#FFDDDD"},
+  {title: "Clean", subtitle: "Welcome to Rwanda", description: "Discover the land of a thousand hills", color: "#BFEAF5", picture: require("../../../../assets/onboarding/1.jpg")},
+  {title: "Green", subtitle: "Gorilla Trecking", description: "A unique opportunity to see mountain gorillas in their natural habitat", color: "#BEECC4", picture: require("../../../../assets/onboarding/2.jpg")},
+  {title: "Responsible", subtitle: "Great Lakes", description: "Part of Africa’s Great Rift Valley, Rwanda is surrounded by magnificent lakes", color: "#FFE4D9", picture: require("../../../../assets/onboarding/3.jpeg")},
+  {title: "Tourism", subtitle: "Canopy Walkway", description: "Memorable and photogenic moments along the Canopy Walk suspension bridge.", color: "#FFDDDD", picture: require("../../../../assets/onboarding/4.jpg")},
 ]
 
 const Onboarding = () => {
   const scroll = useRef<Animated.ScrollView>(null);
-  const x = useValue(0);
-  // TODO: useScrollhandler?
-  const onScroll = onScrollEvent({ x });
+  // TODO: useScrollHandler?
+  const { scrollHandler, x } = useScrollHandler();
 
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -65,41 +71,48 @@ const Onboarding = () => {
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           bounces={false}
-          scrollEventThrottle={1}
-          {...{onScroll}}
+          {...scrollHandler}
         >
-          {slides.map(({ title }, index) => (
-            <Slide key={index} right={!(index % 2)} {...{ title }} />
+          {slides.map(({ title, picture }, index) => (
+            <Slide key={index} right={!(!(index % 2))} {...{ title, picture }} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
       <View style={styles.footer}>
         <Animated.View style={{...StyleSheet.absoluteFillObject, backgroundColor}} />
-        <Animated.View
-          style={[
-            styles.footerContent,
-            {
-              width: width * slides.length,
+        <View style={ styles.footerContent }>
+          <View style={styles.pagination}>
+            {slides.map((_,index) => (
+              <Dot
+                key={index}
+                currentIndex={divide(x, width)}
+                {...{index}}
+              />
+            ))}
+          </View>
+          <Animated.View style={{
               flex: 1,
+              flexDirection: "row",
+              width: width * slides.length,
               transform: [{ translateX: multiply(x, -1) }],
-            },
-          ]}
-        >
-          {slides.map(({ subtitle, description }, index) => (
-            <Subslide
-              key={index}
-              onPress={() => {
-                if(scroll.current) {
-                  scroll.current
-                  .getNode()
-                  .scrollTo({x: width * (index + 1), animated: true})
-                }
-              }}
-              last={index === slides.length - 1}
-              {...{ subtitle, description }}
-            />
-          ))}
-        </Animated.View>
+            }}
+          >
+            {slides.map(({ subtitle, description }, index) => (
+              <Subslide
+                key={index}
+                onPress={() => {
+                  if(scroll.current) {
+                    scroll.current
+                    .getNode()
+                    .scrollTo({x: width * (index + 1), animated: true})
+                  }
+                }}
+                last={index === slides.length - 1}
+                {...{ subtitle, description }}
+              />
+            ))}
+          </Animated.View>
+        </View>
       </View>
     </View>
   );
