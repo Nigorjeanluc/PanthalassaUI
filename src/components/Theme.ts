@@ -8,6 +8,8 @@ const theme = {
     white: "white",
     grey: "rgba(12, 13, 52, 0.05)",
     transparent: "rgba(0, 0, 0, 0.00)",
+    darkGrey: "#8A8D90",
+    danger: "#FF0058"
   },
   spacing: {
     s: 8,

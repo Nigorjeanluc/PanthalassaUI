@@ -22,7 +22,7 @@ const Container = ({children, footer}: ContainerProps) => {
   return (
     <Box flex={1} backgroundColor="secondary">
       <StatusBar barStyle="light-content" />
-      <Box backgroundColor="white">
+      <Box overflow="scroll" backgroundColor="white">
         <Box
           borderBottomLeftRadius="xl"
           overflow="hidden"
