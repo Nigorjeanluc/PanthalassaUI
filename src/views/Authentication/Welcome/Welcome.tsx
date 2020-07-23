@@ -1,5 +1,5 @@
 import React from 'react';
-import theme, { Box, Text } from '../../../components/Theme';
+import { Box, Text, useTheme } from '../../../components/Theme';
 import { Image, StyleSheet } from 'react-native';
 import { Button } from '../../../components';
 import { Routes, StackNavigationProps } from '../../../components/Navigation';
@@ -24,6 +24,7 @@ export const assets = [picture.src];
 const Welcome = ({
   navigation 
 }: StackNavigationProps<Routes, "Welcome">) => {
+  const theme = useTheme();
   return (
     <Box flex={1} backgroundColor="white">
       <Box

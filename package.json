@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.0",
@@ -20,6 +21,7 @@
     "expo-constants": "~9.1.1",
     "expo-font": "~8.2.1",
     "expo-status-bar": "^1.0.2",
+    "formik": "^2.1.5",
     "metro-config": "^0.60.0",
     "native-base": "^2.13.12",
     "node-sass": "^4.14.1",
@@ -32,16 +34,17 @@
     "react-native-safe-area-context": "~3.0.7",
     "react-native-sass-transformer": "^1.4.0",
     "react-native-screens": "~2.9.0",
+    "react-native-svg": "12.1.0",
     "react-native-vector-icons": "^7.0.0",
     "react-native-web": "~0.11.7",
     "redux": "^4.0.5",
-    "react-native-svg": "12.1.0",
-    "@expo/vector-icons": "^10.0.0"
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@types/react-native": "^0.57.65",
     "@types/react-native-vector-icons": "^6.4.5",
+    "@types/yup": "^0.29.3",
     "babel-preset-expo": "~8.1.0",
     "uuidv4": "^6.1.1"
   },
