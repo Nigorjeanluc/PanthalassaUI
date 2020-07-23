@@ -19,8 +19,14 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.gammageeks.panthalassa",
+      "versionCode": 1
+    },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/gamma-geeks/panthalassa.git"
   }
 }
