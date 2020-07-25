@@ -1,40 +1,47 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-import { Container, Button, Text, Box } from '../../../components';
-import { Formik } from 'formik';
+import { Container, Button, Text, Box } from '../../components';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import SocialLogin from "../components/SocialLogin";
-import TextInput from '../components/Form/TextInput';
-import Checkbox from '../components/Form/Checkbox';
-
-interface LoginProps {}
+import TextInput from './components/Form/TextInput';
+import Checkbox from './components/Form/Checkbox';
+import Footer from './components/Footer';
+import { StackNavigationProps, Routes } from '../../components/Navigation';
 
 const LoginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  email: Yup.string().email("Invalid email").required("Required"),
 });
 
-const Login = () => {
+const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
   const footer = (
-    <>
-      <SocialLogin/>
-      <Box alignItems="center">
-        <Button
-          variant="transparent"
-          onPress={() => alert("SignUp")}
-        >
-          <Box flex={1} flexDirection="row" justifyContent="center">
-            <Text variant="button" color="white">Don't have an account?</Text>
-            <Text marginLeft="s" variant="button" color="primary">Sign Up here</Text>
-          </Box>
-        </Button>
-      </Box>
-    </>
-  )
+    <Footer
+      title="Dont't have an account?"
+      action="Sign Up here"
+      onPress={() => navigation.navigate("SignUp")}
+    />
+  );
+
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    errors,
+    touched,
+    setFieldValue
+  } = useFormik({
+    validationSchema: LoginSchema,
+    initialValues: { email: '', password: '', remember: true },
+    onSubmit: (values) => console.log(values)
+  });
+
+  const password = useRef<typeof TextInput>(null);
+
   return (
     <Container {...{footer}}>
       <Box marginBottom="m" padding="xl">
@@ -52,20 +59,6 @@ const Login = () => {
         >
           Use your credentials below and login to your account
         </Text>
-        <Formik
-          validationSchema={LoginSchema}
-          initialValues={{ email: '', password: '', remember: true }}
-          onSubmit={(values) => console.log(values)}
-        >
-          {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-              setFieldValue
-            }) => (
             <Box>
               <Box marginBottom="m">
                 <TextInput
@@ -75,16 +68,28 @@ const Login = () => {
                   onBlur={handleBlur("email")}
                   error={errors.email}
                   touched={touched.email}
+                  autoCapitalize="none"
+                  autoCompleteType="email"
+                  returnKeyType="next"
+                  returnKeyLabel="next"
+                  onSubmitEditing={() => password.current?.focus()}
                 />
               </Box>
               <Box>
                 <TextInput
+                  ref={password}
                   icon="lock"
                   placeholder="Enter your Password"
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   error={errors.password}
                   touched={touched.password}
+                  autoCompleteType="password"
+                  autoCapitalize="none"
+                  returnKeyType="go"
+                  returnKeyLabel="go"
+                  onSubmitEditing={() => handleSubmit()}
+                  secureTextEntry
                 />
               </Box>
               <Box
@@ -108,8 +113,6 @@ const Login = () => {
                 />
               </Box>
             </Box>
-          )}
-        </Formik>
       </Box>
     </Container>
   );
