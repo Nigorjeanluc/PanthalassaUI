@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Text, useTheme } from '../../../components/Theme';
+import { Box, Text, useTheme } from '../../components/Theme';
 import { Image, StyleSheet } from 'react-native';
-import { Button } from '../../../components';
-import { Routes, StackNavigationProps } from '../../../components/Navigation';
+import { Button } from '../../components';
+import { Routes, StackNavigationProps } from '../../components/Navigation';
 
 const styles = StyleSheet.create({
   picture: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 })
 
 const picture = {
-  src: require('../../../../assets/onboarding/6.png'),
+  src: require('../../../assets/onboarding/6.png'),
   width: 3383,
   height: 5074,
 }

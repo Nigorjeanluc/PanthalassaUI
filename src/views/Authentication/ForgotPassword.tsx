@@ -24,14 +24,16 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
   } = useFormik({
     validationSchema: ForgotPasswordSchema,
     initialValues: { email: '' },
-    onSubmit: (values) => console.log(values)
+    onSubmit: () => navigation.navigate("PasswordChanged")
   });
   
   const footer = (
     <Footer
       title="Dont't work?"
       action="Try another way"
-      onPress={() => Linking.openURL("mailto:help@support.com")}
+      onPress={() => {
+        console.log("GO"), navigation.navigate("PasswordChanged");
+      }}
     />
   );
   return (
