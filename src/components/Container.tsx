@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Image, Dimensions, StyleSheet, StatusBar, ScrollView } from "react-native";
+import { Image, Dimensions, StyleSheet, Platform } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Constants from 'expo-constants';
 import { Box, useTheme } from './Theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,7 +10,7 @@ export const assets = [
   require('../../assets/patterns/imigongo.png'),
   require('../../assets/patterns/imigongo1.jpg'),
 ];
-const { width } = Dimensions.get("window");
+const { width, height: wHeight } = Dimensions.get("window");
 const aspectRatio = 750 / 1125;
 const height = width * aspectRatio;
 
@@ -22,9 +23,8 @@ const Container = ({children, footer}: ContainerProps) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   return (
-    <ScrollView style={{backgroundColor: "#0C0D34", flex: 1}}>
-      <Box flex={1} backgroundColor="secondary">
-        <StatusBar barStyle="light-content" />
+    <KeyboardAwareScrollView scrollEnabled={false}>
+      <Box height={wHeight + (Platform.OS === "android" ? Constants. statusBarHeight : 0)} backgroundColor="secondary">
         <Box overflow="scroll" backgroundColor="white">
           <Box
             borderBottomLeftRadius="xl"
@@ -60,15 +60,14 @@ const Container = ({children, footer}: ContainerProps) => {
             borderTopLeftRadius={0}
             backgroundColor="white"
           >
-            <KeyboardAwareScrollView>{children}</KeyboardAwareScrollView>
+            {children}
           </Box>
         </Box>
-        <Box overflow="visible" backgroundColor="secondary" paddingTop="m">
+        <Box backgroundColor="secondary" paddingTop="m">
           {footer}
-          <Box height={insets.bottom} />
         </Box>
       </Box>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 

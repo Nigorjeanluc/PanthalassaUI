@@ -75,7 +75,7 @@ const Welcome = ({
           />
           <Button
             label="Join us, it's Free"
-            onPress={() => alert("SignUp")}
+            onPress={() => navigation.navigate("SignUp")}
           />
           <Button
             variant="transparent"
