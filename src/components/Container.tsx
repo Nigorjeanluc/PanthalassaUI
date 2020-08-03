@@ -9,7 +9,7 @@ export const assets = [
   require('../../assets/patterns/imigongo.jpg'),
   require('../../assets/patterns/imigongo.png'),
   require('../../assets/patterns/imigongo1.jpg'),
-];
+] as const;
 const { width, height: wHeight } = Dimensions.get("window");
 const aspectRatio = 750 / 1125;
 const height = width * aspectRatio;
@@ -17,11 +17,13 @@ const height = width * aspectRatio;
 interface ContainerProps {
   children: ReactNode;
   footer: ReactNode;
+  pattern: 0 | 1 | 2;
 }
 
-const Container = ({children, footer}: ContainerProps) => {
+const Container = ({children, footer, pattern}: ContainerProps) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
+  const asset = assets[pattern];
   return (
     <KeyboardAwareScrollView scrollEnabled={false}>
       <Box height={wHeight + (Platform.OS === "android" ? Constants. statusBarHeight : 0)} backgroundColor="secondary">
@@ -32,7 +34,7 @@ const Container = ({children, footer}: ContainerProps) => {
             height={height * 0.61}
           >
             <Image
-              source={assets[0]}
+              source={asset}
               style={{
                 width,
                 height,
@@ -46,7 +48,7 @@ const Container = ({children, footer}: ContainerProps) => {
           overflow="hidden"
         >
           <Image
-            source={assets[0]}
+            source={asset}
             style={{
               ...StyleSheet.absoluteFillObject,
               width,

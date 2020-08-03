@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "babel-plugin-react-native-classname-to-style": "^1.2.2",
     "babel-plugin-react-native-platform-specific-extensions": "^1.1.1",
+    "dotenv": "^8.2.0",
     "expo": "~38.0.8",
     "expo-asset": "~8.1.7",
     "expo-constants": "~9.1.1",
@@ -38,7 +39,9 @@
     "react-native-svg": "12.1.0",
     "react-native-vector-icons": "^7.0.0",
     "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "yup": "^0.29.1"
   },
   "devDependencies": {

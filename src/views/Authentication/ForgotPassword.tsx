@@ -5,8 +5,8 @@ import Footer from './components/Footer';
 import { Container, Box, Text, Button } from '../../components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import TextInput from './components/Form/TextInput';
-import Checkbox from './components/Form/Checkbox';
+import TextInput from '../../components/Form/TextInput';
+import Checkbox from '../../components/Form/Checkbox';
 
 interface ForgotPasswordProps {}
 
@@ -37,7 +37,7 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
     />
   );
   return (
-  <Container {...{footer}}>
+  <Container pattern={1} {...{footer}}>
     <Box justifyContent="center" padding="xl">
         <Text
           variant="title1"

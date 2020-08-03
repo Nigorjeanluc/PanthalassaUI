@@ -6,8 +6,8 @@ import { Container, Button, Text, Box } from '../../components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import TextInput from './components/Form/TextInput';
-import Checkbox from './components/Form/Checkbox';
+import TextInput from '../../components/Form/TextInput';
+import Checkbox from '../../components/Form/Checkbox';
 import Footer from './components/Footer';
 import { StackNavigationProps, Routes } from '../../components/Navigation';
 
@@ -52,7 +52,7 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
   const passwordConfirmation = useRef<RNTextInput>(null);
 
   return (
-    <Container {...{footer}}>
+    <Container pattern={1} {...{footer}}>
       <Box marginBottom="m" padding="xl">
         <Text
           variant="title1"
