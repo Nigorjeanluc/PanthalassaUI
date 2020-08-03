@@ -5,7 +5,7 @@ import { useTheme } from '@shopify/restyle';
 import { Theme, Text } from './Theme';
 
 interface ButtonProps {
-  variant: "default" | "primary" | "transparent";
+  variant: "default" | "primary";
   label?: string;
   onPress: () => void;
   children?: ReactNode;
@@ -25,11 +25,7 @@ const Button = ({ variant, label, onPress, children }: ButtonProps) => {
   const backgroundColor =
     variant === "primary"
       ? theme.colors.primary
-      : (
-          variant === "transparent"
-          ? "transparent"
-          : theme.colors.grey
-        );
+      : theme.colors.grey;
   const color =
     variant === "primary"
       ? theme.colors.white
