@@ -8,12 +8,21 @@ export interface StackNavigationProps<
   navigation: StackNavigationProp<ParamList, RouteName>;
   route: RouteProp<ParamList, RouteName>;
 }
+
+export type AppRoutes = {
+  Authentication: undefined;
+  Home: undefined;
+};
  
-export type Routes = {
+export type AuthenticationRoutes = {
   Onboarding: undefined;
   Welcome: undefined;
   Login: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
   PasswordChanged: undefined;
+};
+
+export type HomeRoutes = {
+  OutfitIdeas: undefined;
 };

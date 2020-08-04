@@ -1,6 +1,9 @@
 import React from 'react';
 import  { Linking } from 'react-native';
-import { StackNavigationProps, Routes } from '../../components/Navigation';
+import {
+  StackNavigationProps,
+  AuthenticationRoutes
+} from '../../components/Navigation';
 import Footer from './components/Footer';
 import { Container, Box, Text, Button } from '../../components';
 import { useFormik } from 'formik';
@@ -10,7 +13,7 @@ import Checkbox from '../../components/Form/Checkbox';
 
 interface ForgotPasswordProps {}
 
-const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPassword">) => {
+const ForgotPassword = ({ navigation }: StackNavigationProps<AuthenticationRoutes, "ForgotPassword">) => {
   const ForgotPasswordSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
   });

@@ -14,7 +14,10 @@ import Slide, { SLIDE_HEIGHT/*, BORDER_RADIUS*/ } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 import { useTheme } from '../../../components';
-import { StackNavigationProps, Routes } from '../../../components/Navigation';
+import {
+  StackNavigationProps,
+  AuthenticationRoutes
+} from '../../../components/Navigation';
 import { Theme, makeStyles } from '../../../components/Theme';
 
 const {width, height} = Dimensions.get('window');
@@ -108,7 +111,7 @@ const slides = [
 
 export const assets = slides.map(slide => slide.picture.src);
 
-const Onboarding = ({ navigation }:StackNavigationProps<Routes, "Onboarding">) => {
+const Onboarding = ({ navigation }:StackNavigationProps<AuthenticationRoutes, "Onboarding">) => {
   const styles = useStyles();
   const theme = useTheme();
   const scroll = useRef<Animated.ScrollView>(null);

@@ -2,7 +2,11 @@ import React from 'react';
 import { Box, Text, useTheme } from '../../components/Theme';
 import { Image, StyleSheet } from 'react-native';
 import { Button } from '../../components';
-import { Routes, StackNavigationProps } from '../../components/Navigation';
+import {
+  StackNavigationProps,
+  AuthenticationRoutes
+} from '../../components/Navigation';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   picture: {
@@ -23,7 +27,7 @@ export const assets = [picture.src];
 
 const Welcome = ({
   navigation 
-}: StackNavigationProps<Routes, "Welcome">) => {
+}: StackNavigationProps<AuthenticationRoutes, "Welcome">) => {
   const theme = useTheme();
   return (
     <Box flex={1} backgroundColor="white">
@@ -77,11 +81,9 @@ const Welcome = ({
             label="Join us, it's Free"
             onPress={() => navigation.navigate("SignUp")}
           />
-          <Button
-            variant="transparent"
-            label="Forgot password?"
-            onPress={() => alert("Forgot password")}
-          />
+          <BorderlessButton onPress={() => navigation.navigate("ForgotPassword")}>
+            <Text variant="button" color="secondary">Forgot password?</Text>
+          </BorderlessButton>
         </Box>
       </Box>
     </Box>

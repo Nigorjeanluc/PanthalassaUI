@@ -1,12 +1,15 @@
 import React from 'react';
-import { Routes, StackNavigationProps } from '../../components/Navigation';
+import {
+  AuthenticationRoutes,
+  StackNavigationProps
+} from '../../components/Navigation';
 import { Container, Box, Text, Button, RoundedIconButton, RoundedIcon } from '../../components';
 
 const SIZE = 80;
 
 interface PasswordChangedProps {}
 
-const PasswordChanged = ({ navigation }: StackNavigationProps<Routes, "PasswordChanged">) => {
+const PasswordChanged = ({ navigation }: StackNavigationProps<AuthenticationRoutes, "PasswordChanged">) => {
   return (
     <Container pattern={0} footer={
         <Box flexDirection="row" justifyContent="center">
