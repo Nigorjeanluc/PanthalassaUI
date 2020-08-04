@@ -3,8 +3,7 @@ import { Box, Text, useTheme } from '../../components/Theme';
 import { Image, StyleSheet } from 'react-native';
 import { Button } from '../../components';
 import {
-  StackNavigationProps,
-  AuthenticationRoutes
+  AuthNavigationProps
 } from '../../components/Navigation';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
@@ -27,7 +26,7 @@ export const assets = [picture.src];
 
 const Welcome = ({
   navigation 
-}: StackNavigationProps<AuthenticationRoutes, "Welcome">) => {
+}: AuthNavigationProps<"Welcome">) => {
   const theme = useTheme();
   return (
     <Box flex={1} backgroundColor="white">

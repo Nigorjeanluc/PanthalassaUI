@@ -9,11 +9,8 @@ import * as Yup from 'yup';
 import TextInput from '../../components/Form/TextInput';
 import Checkbox from '../../components/Form/Checkbox';
 import Footer from './components/Footer';
-import { StackNavigationProps, AuthenticationRoutes, HomeRoutes } from '../../components/Navigation';
+import { AuthNavigationProps } from '../../components/Navigation';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { CompositeNavigationProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -23,14 +20,7 @@ const LoginSchema = Yup.object().shape({
     .required('Required'),
 });
 
-interface LoginProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthenticationRoutes, "Login">,
-    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
-  >
-}
-
-const Login = ({ navigation }: LoginProps) => {
+const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   const footer = (
     <Footer
       title="Dont't have an account?"
@@ -50,25 +40,23 @@ const Login = ({ navigation }: LoginProps) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
-    onSubmit: /*(values) => console.log(values)*/ () => navigation.navigate("OutfitIdeas"),
+    onSubmit: /*(values) => console.log(values)*/ () => navigation.navigate("Home"),
   });
 
   const password = useRef<RNTextInput>(null);
 
   return (
     <Container pattern={0} {...{footer}}>
-      <Box marginBottom="m" padding="xl">
         <Text
           variant="title1"
           textAlign="center"
-          marginBottom="l"
         >
           Welcome back
         </Text>
         <Text
           variant="body"
           textAlign="center"
-          marginBottom="l"
+          // marginBottom="l"
         >
           Use your credentials below and login to your account
         </Text>
@@ -128,7 +116,6 @@ const Login = ({ navigation }: LoginProps) => {
                 />
               </Box>
             </Box>
-      </Box>
     </Container>
   );
 }

@@ -15,8 +15,7 @@ import Subslide from "./Subslide";
 import Dot from "./Dot";
 import { useTheme } from '../../../components';
 import {
-  StackNavigationProps,
-  AuthenticationRoutes
+  AuthNavigationProps
 } from '../../../components/Navigation';
 import { Theme, makeStyles } from '../../../components/Theme';
 
@@ -111,7 +110,7 @@ const slides = [
 
 export const assets = slides.map(slide => slide.picture.src);
 
-const Onboarding = ({ navigation }:StackNavigationProps<AuthenticationRoutes, "Onboarding">) => {
+const Onboarding = ({ navigation }:AuthNavigationProps<"Onboarding">) => {
   const styles = useStyles();
   const theme = useTheme();
   const scroll = useRef<Animated.ScrollView>(null);

@@ -1,19 +1,16 @@
 import React from 'react';
 import  { Linking } from 'react-native';
 import {
-  StackNavigationProps,
-  AuthenticationRoutes
+  AuthNavigationProps
 } from '../../components/Navigation';
 import Footer from './components/Footer';
 import { Container, Box, Text, Button } from '../../components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../../components/Form/TextInput';
-import Checkbox from '../../components/Form/Checkbox';
 
-interface ForgotPasswordProps {}
 
-const ForgotPassword = ({ navigation }: StackNavigationProps<AuthenticationRoutes, "ForgotPassword">) => {
+const ForgotPassword = ({ navigation }: AuthNavigationProps<"ForgotPassword">) => {
   const ForgotPasswordSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
   });
@@ -41,7 +38,6 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<AuthenticationRoute
   );
   return (
   <Container pattern={1} {...{footer}}>
-    <Box justifyContent="center" padding="xl">
         <Text
           variant="title1"
           textAlign="center"
@@ -80,7 +76,6 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<AuthenticationRoute
                 />
               </Box>
             </Box>
-      </Box>
   </Container>);
 };
 
