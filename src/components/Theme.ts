@@ -9,9 +9,11 @@ export const theme = {
   colors: {
     primary: "#2CB9B0",
     secondary: "#0C0D34",
+    black: "#000000",
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
     grey: "rgba(12, 13, 52, 0.05)",
+    lightGrey: "#FAFAFA",
     transparent: "rgba(0, 0, 0, 0.00)",
     darkGrey: "#8A8D90",
     danger: "#FF0058",
@@ -19,7 +21,8 @@ export const theme = {
     orange: "#FE5E33",
     yellow: "#FFC641",
     pink: "#FF87A2",
-    violet: "#442CB9"
+    violet: "#442CB9",
+    lightBlue: "#BFEAF5"
   },
   spacing: {
     s: 8,
@@ -69,6 +72,12 @@ export const theme = {
       fontFamily: "SFProText-Medium",
       color: "text",
       textAlign: "center"
+    },
+    header: {
+      fontSize: 12,
+      lineHeight: 24,
+      fontFamily: "SFProText-Semibold",
+      color: "secondary"
     }
   },
   breakpoints: {}

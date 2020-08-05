@@ -4,7 +4,7 @@ import { ThemeProvider } from "@shopify/restyle";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeNavigator } from './src/views/Home';
+import { HomeNavigator, assets as homeAssets } from './src/views/Home';
 import {
   assets as authenticationAssets,
   AuthenticationNavigator
@@ -13,7 +13,7 @@ import { LoadAssets } from './src/components';
 import { theme } from './src/components/Theme';
 import { AppRoutes } from './src/components/Navigation';
 
-const assets = [...authenticationAssets];
+const assets = [...authenticationAssets, ...homeAssets];
 const fonts = {
   "SFProText-Bold": require("./assets/fonts/SF-Pro-Text-Bold.otf"),
   "SFProText-Semibold": require("./assets/fonts/SF-Pro-Text-Semibold.otf"),

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Box, Text, RoundedIconButton } from '../../../components';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { Box, Text, Header } from '../../../components';
 import { Dimensions, Image } from 'react-native';
 import { theme } from '../../../components/Theme';
 import DrawerItem, {DrawerItemProps} from './DrawerItem';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { HomeNavigationProps } from '../../../components/Navigation';
+
+export const assets = [require('../../../../assets/patterns/imigongo.jpg')];
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
@@ -12,7 +15,7 @@ const height = width * aspectRatio;
 const items: DrawerItemProps[] = [
   {
     icon: "zap",
-    label: "Outfit Ideas",
+    label: "Trip Ideas",
     screen: "OutfitIdeas",
     color: "primary"
   },
@@ -48,8 +51,8 @@ const items: DrawerItemProps[] = [
   }
 ]
 
-const Drawer = () => {
-  // const insets = useSafeAreaInsets();
+const Drawer = ({ navigation }) => {
+  // const navigation = useNavigation();
   return (
     <Box flex={1}>
       <Box
@@ -64,25 +67,18 @@ const Drawer = () => {
           bottom={0}
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
-          flexDirection="row"
-          justifyContent="space-between"
-          paddingHorizontal="m"
-          paddingTop="l"
         >
-          <RoundedIconButton
-            size={24}
-            name="x"
-            color="white"
-            backgroundColor="secondary"
-            onPress={() => true}
-          />
-          <Text color="white">MY PROFILE</Text>
-          <RoundedIconButton
-            size={24}
-            name="shopping-bag"
-            color="white"
-            backgroundColor="secondary"
-            onPress={() => true}
+          <Header
+            title="Menu"
+            left={{
+              icon: "x",
+              onPress: () => navigation.dispatch(DrawerActions.closeDrawer())
+            }}
+            right={{
+              icon: "shopping-bag",
+              onPress: () => true
+            }}
+            dark
           />
         </Box>
       </Box>
@@ -90,7 +86,7 @@ const Drawer = () => {
         <Box flex={1} backgroundColor="secondary" />
         <Box flex={1} backgroundColor="primaryLight" />
         <Image
-            source={require('../../../../assets/patterns/imigongo.jpg')}
+            source={assets[0]}
             style={{
               position: "absolute",
               left: 0,
@@ -141,7 +137,7 @@ const Drawer = () => {
           borderTopLeftRadius="xl"
         >
           <Image
-            source={require('../../../../assets/patterns/imigongo.jpg')}
+            source={assets[0]}
             style={{
               position: "absolute",
               left: 0,
