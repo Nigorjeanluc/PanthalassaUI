@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { sub } from 'react-native-reanimated';
+import { useTransition } from 'react-native-redash';
 import { Box, Header } from '../../../components';
 import { HomeNavigationProps } from '../../../components/Navigation';
 import Background from './Background';
 import Card from './Card';
+import Categories from './Categories';
 
-interface OutfitIdeasProps {}
+const cards = [
+  {
+    index: 3,
+    source: require("../../../../assets/onboarding/2.jpg"),
+  },
+  {
+    index: 2,
+    source: require("../../../../assets/onboarding/2.jpg"),
+  },
+  {
+    index: 1,
+    source: require("../../../../assets/onboarding/2.jpg"),
+  },
+  {
+    index: 0,
+    source: require("../../../../assets/onboarding/2.jpg"),
+  },
+];
+
+const step = 1/(cards.length - 1);
 
 const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const aIndex = useTransition(currentIndex);
   return (
     <Box
       flex={1}
@@ -23,11 +47,19 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
           onPress: () => true
         }}
       />
+      <Categories />
       <Box flex={1}>
         <Background />
-        <Card position={1} />
-        <Card position={0.5} />
-        <Card position={0} />
+        {
+          cards.map(({ index, source }) => currentIndex < index * step + step  && (
+            <Card
+              key={index}
+              position={sub(index * step, aIndex)}
+              onSwipe={() => setCurrentIndex((prev) => prev + step)}
+              {...{ source, step }}
+            />
+          ))
+        }
       </Box>
     </Box>
   );
