@@ -22,31 +22,31 @@ const items: DrawerItemProps[] = [
   {
     icon: "heart",
     label: "Favorites Places",
-    screen: "FavoritesOutfits",
+    screen: "FavoriteOutfits",
     color: "orange"
   },
   {
     icon: "user",
     label: "Edit Profile",
-    screen: "EditProfile",
+    screen: "FavoriteOutfits",
     color: "yellow"
   },
   {
     icon: "clock",
     label: "Transaction History",
-    screen: "TransactionHistory",
+    screen: "FavoriteOutfits",
     color: "pink"
   },
   {
     icon: "settings",
     label: "Notifications Settings",
-    screen: "NotificationsSettings",
+    screen: "FavoriteOutfits",
     color: "violet"
   },
   {
     icon: "log-out",
     label: "Logout",
-    screen: "Logout",
+    screen: "FavoriteOutfits",
     color: "secondary"
   }
 ]
@@ -125,8 +125,8 @@ const Drawer = ({ navigation }) => {
               mvincent@gmail.com
             </Text>
           </Box>
-          {items.map((item) => (
-            <DrawerItem key={item.screen} {...item}/>
+          {items.map((item, index) => (
+            <DrawerItem key={item.icon} {...item}/>
           ))}
         </Box>
         <Box

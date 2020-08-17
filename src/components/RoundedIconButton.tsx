@@ -1,5 +1,5 @@
 import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
+import { BorderlessButton } from 'react-native-gesture-handler';
 import RoundedIcon, { RoundedIconProps } from './RoundedIcon';
 
 interface RoundedIconButtonProps extends RoundedIconProps {
@@ -10,7 +10,7 @@ const SIZE = 60;
 
 const RoundedIconButton = ({ onPress, ...props }: RoundedIconButtonProps) => {
   return (
-    <RectButton
+    <BorderlessButton
       style={{
         borderRadius: props.size / 2,
         width: props.size,
@@ -19,7 +19,7 @@ const RoundedIconButton = ({ onPress, ...props }: RoundedIconButtonProps) => {
       {...{ onPress }}
     >
       <RoundedIcon {...props} />
-    </RectButton>
+    </BorderlessButton>
   );
 }
 
