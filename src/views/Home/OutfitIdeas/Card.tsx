@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ImageRequireSource } from 'react-native';
-import { Box } from '../../../components';
+import { Box, Text } from '../../../components';
 import Animated, { add, interpolate, Extrapolate } from 'react-native-reanimated';
 import { mixColor, mix, usePanGestureHandler } from 'react-native-redash';
 import { PanGestureHandler } from 'react-native-gesture-handler';
@@ -17,9 +17,11 @@ interface CardProps {
   onSwipe: () => void;
   source: ImageRequireSource;
   step: number;
+  title: string;
+  subtitle: string;
 }
 
-const Card = ({ position, onSwipe, source, step }: CardProps) => {
+const Card = ({ position, onSwipe, source, step, title, subtitle }: CardProps) => {
   const { gestureHandler, translation, velocity, state } = usePanGestureHandler();
   const backgroundColor = mixColor(position, "#C9E9E7", "#74BCB8");
   const translateYOffset = mix(position, 0, -50);
@@ -59,7 +61,8 @@ const Card = ({ position, onSwipe, source, step }: CardProps) => {
             height,
             borderRadius,
             transform: [{ translateY }, { translateX }, { scale }],
-            overflow: "hidden"
+            overflow: "hidden",
+            justifyContent: "flex-end"
           }}
         >
           <Animated.Image {...{source}} style={{
@@ -69,6 +72,17 @@ const Card = ({ position, onSwipe, source, step }: CardProps) => {
             transform: [{ scale: imageScale }],
             borderRadius: 22
           }}/>
+          <Box
+            margin="l"
+            justifyContent="center"
+            alignItems="center"
+            backgroundColor="partialTransparent"
+            borderRadius="m"
+            padding="m"
+          >
+            <Text variant="title3">{title}</Text>
+            <Text variant="title4">{subtitle}</Text>
+          </Box>
         </Animated.View>
       </PanGestureHandler>
     </Box>

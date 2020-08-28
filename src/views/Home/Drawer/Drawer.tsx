@@ -15,7 +15,7 @@ const height = width * aspectRatio;
 const items: DrawerItemProps[] = [
   {
     icon: "zap",
-    label: "Trip Ideas",
+    label: "Activities",
     screen: "OutfitIdeas",
     color: "primary"
   },

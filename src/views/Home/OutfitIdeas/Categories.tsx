@@ -6,28 +6,33 @@ import Category from "./Category";
 const categories = [
   {
     id: "newin",
-    title: "New In",
-    color: "#FFE8E0"
+    title: "National Parks",
+    color: "#FFE8E0",
+    image: require('../../../../assets/home/gorilla.png')
   },
   {
     id: "summer",
-    title: "Summer",
-    color: "#F1E0FF"
+    title: "Hotels",
+    color: "#F1E0FF",
+    image: require('../../../../assets/home/hotel.png')
   },
   {
     id: "activewear",
-    title: "Active Wear",
-    color: "#BFEAF5"
+    title: "Restaurants",
+    color: "#BFEAF5",
+    image: require('../../../../assets/home/resto.png')
   },
   {
     id: "outlet",
-    title: "Outlet",
-    color: "#BFEAF5"
+    title: "Museums",
+    color: "#BFEAF5",
+    image: require('../../../../assets/home/museum.png')
   },
   {
     id: "accesories",
-    title: "Accesories",
-    color: "#FFE8E9"
+    title: "Itineraries",
+    color: "#FFE8E9",
+    image: require('../../../../assets/home/itinerary.png')
   },
 ];
 

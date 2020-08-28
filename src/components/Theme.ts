@@ -15,6 +15,8 @@ export const theme = {
     grey: "rgba(12, 13, 52, 0.05)",
     lightGrey: "#FAFAFA",
     transparent: "rgba(0, 0, 0, 0.00)",
+    partialTransparent: "rgba(28, 89, 82, 0.63)",
+    txtShadow: "rgba(0, 0, 0, 0.25)",
     // darkGrey: "#8A8D90",
     danger: "#FF0058",
     darkGrey: "#808080",
@@ -58,6 +60,22 @@ export const theme = {
       fontFamily: "SFProText-Semibold",
       textAlign: "center",
       color: "secondary"
+    },
+    title3: {
+      fontSize: 22,
+      lineHeight: 30,
+      fontFamily: "SFProText-Semibold",
+      textAlign: "center",
+      color: "white",
+      textShadow: "txtShadow"
+    },
+    title4: {
+      fontSize: 11,
+      lineHeight: 18,
+      fontFamily: "SFProText-Semibold",
+      textAlign: "center",
+      color: "white",
+      textShadow: "txtShadow"
     },
     body: {
       fontSize: 16,
