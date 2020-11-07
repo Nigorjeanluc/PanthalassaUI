@@ -8,15 +8,19 @@ export const MARGIN = "xl";
 const ROW_HEIGHT = 16;
 
 interface UnderlayProps {
-  dates: number[];
+  // dates: number[];
   minY: number;
   maxY: number;
+  startDate: number;
+  numberOfMonths: number;
   step: number;
 }
 
 
-const Underlay = ({ dates, minY, maxY, step}: UnderlayProps) => {
+const Underlay = ({ minY, maxY, step, startDate, numberOfMonths}: UnderlayProps) => {
   const theme = useTheme();
+  // const numberOfMonths = new Date(maxX - minX).getMonth();
+  const minDate = moment(startDate);
   return (
     <Box style={StyleSheet.absoluteFill}>
       <Box
@@ -63,9 +67,11 @@ const Underlay = ({ dates, minY, maxY, step}: UnderlayProps) => {
         alignItems="center"
       >
         {
-          dates.map((date, index) => (
+          new Array(numberOfMonths).fill(0)
+          .map((_, i) => minDate.clone().add(i, "month"))
+          .map((date, index) => (
             <Box key={index} width={step} >
-              <Text color="darkGrey" textAlign="center">{moment(date).format('MMM')}</Text>
+              <Text color="darkGrey" textAlign="center">{date.format('MMM')}</Text>
             </Box>
           ))
         }

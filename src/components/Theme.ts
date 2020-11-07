@@ -77,6 +77,11 @@ export const theme = {
       color: "white",
       textShadow: "txtShadow"
     },
+    title5: {
+      fontSize: 16,
+      fontFamily: "SFProText-Semibold",
+      color: "secondary",
+    },
     body: {
       fontSize: 16,
       lineHeight: 24,
